@@ -1,19 +1,95 @@
-TESTED LINS
+POSNLSN parsed and stored. No report generated — holding for the final roll-up.
+Format decoded
+Golden is fixed-width text, Generated is the same data already split into columns. Three record types:
+92 (18 ch) — 92 + chain(5) + store(5) + period-end date(6)
+I3 (20 ch) — I3 + EAN(13) + qty sold(5)
+94 (14 ch) — 94 + nbr records(5) + total qty sold(7)
+Counts
 
-852LIN      EN9780008392741
-852LIN      EN9780063215184
-852LIN      EN9780525559498
-852LIN      UP689860520851
+Golden
+Generated
+Rows
+5,017
+306
+Stores (92/94 pairs)
+272
+149
+I3 item records
+4,473
+8
+Total qty sold
+4,960
+13
+Comparison results — 0 mismatches
+All 149 Generated stores found in Golden; 0 missing, 0 extra
+Chain 00207 and period-end 260727 identical on all 149
+All 8 I3 records match Golden on EAN and quantity, including the trailing-space padding on the 12-digit UPC 689860520851 
+94 trailers are internally consistent in both files (nbr records and total qty equal the actual item lines in every store group)
+Cross-check to MEIJER0001 — the Nielsen feed carries only the ZA/QS (quantity sold) records, not QA. The MEIJER input had exactly 8 QS records totalling 13 units, and the Generated Nielsen output reproduces all 8 exactly, with store codes re-padded from 3 to 5 digits.
+Two things noted, both non-defects since Golden agrees:
+The 94 trailer values differ per store (e.g. store 00105: Generated 00001/0000002 vs Golden 00023/0000024). Expected subset variance, same as the CTT case — 141 of the 149 Generated stores have zero items while Golden has items for them.
+Store 00170's activity came from the MEIJER 260728 QS group but is reported under period-end 260727. Golden does the same, so the period-end rollup behaviour is consistent.
+Ready for the next file.
 
-DEBUG OUTPUTS 
 
-ReaderLink.Console.ConsoleTelemetry: Information: [EEpilogue] 
-PhaseCompleted run=90 file=90 chain=10/MJ Elapsed=+10.14s Parsed=43 
-PostedDetail=188 AccumulatedDaily=188 UnmatchedItems=0 ReversedMatches=0 
-HeldRows=0 ToleratedNumericWarnings=0
 
-ReaderLink.Console.ConsoleTelemetry: Information: [EEpilogue] 
-RunCompleted run=90 file=90 chain=10/MJ Parsed=43 
-ToleratedNumericWarnings=0 UnmatchedItems=0 
-ReversedMatches=0 HeldRows=0 PostedDetail=188 AccumulatedDaily=188
-
+POSDLYM parsed and stored. This one has real mismatches — unlike the first two.
+Both blocks sit in one sheet: ACTUAL rows 4–20, GOLDEN rows 25–41. 17 rows each, 33 columns, keyed on P0STR + P0ISBN + P0ACOD. No missing rows, no extras, no duplicates. 561 field comparisons: 384 match, 177 differ.
+What matches — every identity and volume field: agency, chain, store, ISBN, SKU, UPC, EAN, quantity, activity code (QA/QS), activity date, week-end date, UOM, on-hand fields. Quantity total 266 on both sides.
+What fails
+Field
+Rows
+Golden
+Generated
+Category
+P0DAAD
+17/17
+20260728
+20260727
+Date
+P0RPRC
+17/17
+9.99 / 18.00 / 1.00 / 16.99
+0.00
+Price
+P0RSP
+17/17
+5.99 / 11.16 / 0.60 / 10.19
+0.0000
+Price
+P0CPRC
+7/17
+13.50
+0.00
+Price
+P0VEN#
+17/17
+HARHC / PEN / ACD / HARTR
+blank
+Enrichment
+P0PVEN
+17/17
+HAR / PEN / PRR
+blank
+Enrichment
+P0FLAG
+17/17
+Y
+blank
+Control
+P0SFL1
+17/17
+1
+blank
+Control
+P0POOC
+17/17
+01
+blank
+Control
+The pattern points at one root cause: the item/vendor master lookup isn't being applied. Every field sourced from the POS transaction is correct; every field that has to be enriched from a master file comes back empty or zero. P0CPRC only differs on the 7 rows where Golden actually had a cost (13.50) — the other 10 are zero in both, which fits.
+P0DAAD is separate. Golden holds the processing date 07/28; Generated repeats the activity date 07/27.
+Two items flagged informational, not counted as defects — tell me if you want them treated otherwise:
+P0NOID runs 80998–81173 in Generated vs 26965089001–26965637428 in Golden. Looks like an environment-specific surrogate key rather than a comparable value.
+RunId exists only in the Generated layout.
+That gives 143 real field defects. Next file whenever you're ready.
