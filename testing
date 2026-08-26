@@ -1,3 +1,10 @@
+Golden is fixed-width text, Generated is the same data already split into columns. Three record types:
+92 (18 ch) — 92 + chain(5) + store(5) + period-end date(6)
+I3 (20 ch) — I3 + EAN(13) + qty sold(5)
+94 (14 ch) — 94 + nbr records(5) + total qty sold(7)
+
+
+
 POSNLSN parsed and stored. No report generated — holding for the final roll-up.
 Format decoded
 Golden is fixed-width text, Generated is the same data already split into columns. Three record types:
