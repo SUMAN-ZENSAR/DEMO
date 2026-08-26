@@ -1,3 +1,14 @@
+Comparison results — 0 mismatches
+All 149 Generated stores found in Golden; 0 missing, 0 extra
+Chain 00207 and period-end 260727 identical on all 149
+All 8 I3 records match Golden on EAN and quantity, including the trailing-space padding on the 12-digit UPC 689860520851 
+94 trailers are internally consistent in both files (nbr records and total qty equal the actual item lines in every store group)
+Cross-check to MEIJER0001 — the Nielsen feed carries only the ZA/QS (quantity sold) records, not QA. The MEIJER input had exactly 8 QS records totalling 13 units, and the Generated Nielsen output reproduces all 8 exactly, with store codes re-padded from 3 to 5 digits.
+Two things noted, both non-defects since Golden agrees:
+The 94 trailer values differ per store (e.g. store 00105: Generated 00001/0000002 vs Golden 00023/0000024). Expected subset variance, same as the CTT case — 141 of the 149 Generated stores have zero items while Golden has items for them.
+Store 00170's activity came from the MEIJER 260728 QS group but is reported under period-end 260727. Golden does the same, so the period-end rollup behaviour is consistent.
+
+
 Golden is fixed-width text, Generated is the same data already split into columns. Three record types:
 92 (18 ch) — 92 + chain(5) + store(5) + period-end date(6)
 I3 (20 ch) — I3 + EAN(13) + qty sold(5)
