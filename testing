@@ -1,38 +1,19 @@
-Store and analyze all records from both the Golden Output and Generated Output because for each file type have to create a validation report.
+TESTED LINS
 
-Instructions:
-1. Read and store every record from both files completely.
-2. Do not sample or skip any records.
-3. Identify and count all LINs, UPCs, stores, and transaction records.
-4. Group records by LIN.
-5. Preserve original values exactly as they appear, including leading zeros, negative quantities, dates, store numbers, ISBNs, UPCs, and control fields.
-6. Create a comparison dataset containing:
-   - LIN
-   - UPC
-   - Store
-   - Golden Value
-   - Generated Value
-   - Match/Mismatch Status
-   - Comments
-7. Perform a field-by-field comparison for every matching record.
-8. Highlight:
-   - Missing records
-   - Extra records
-   - Quantity differences
-   - Price differences
-   - Date differences
-   - Store differences
-   - ISBN/UPC differences
-   - Control total differences
-9. Calculate totals and record counts for both files.
-10. Produce a validation report suitable for project sign-off.
+852LIN      EN9780008392741
+852LIN      EN9780063215184
+852LIN      EN9780525559498
+852LIN      UP689860520851
 
-Output Format:
-- File Summary
-- Total Records Compared
-- Total LINs Compared
-- Record Count Validation
-- Field-by-Field Validation Results
-- Mismatch Summary
-- Control Total Validation
-- Conclusion (Pass/Fail)
+DEBUG OUTPUTS 
+
+ReaderLink.Console.ConsoleTelemetry: Information: [EEpilogue] 
+PhaseCompleted run=90 file=90 chain=10/MJ Elapsed=+10.14s Parsed=43 
+PostedDetail=188 AccumulatedDaily=188 UnmatchedItems=0 ReversedMatches=0 
+HeldRows=0 ToleratedNumericWarnings=0
+
+ReaderLink.Console.ConsoleTelemetry: Information: [EEpilogue] 
+RunCompleted run=90 file=90 chain=10/MJ Parsed=43 
+ToleratedNumericWarnings=0 UnmatchedItems=0 
+ReversedMatches=0 HeldRows=0 PostedDetail=188 AccumulatedDaily=188
+
