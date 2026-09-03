@@ -1,2 +1,245 @@
-python pos_validator.py "golden_posdlym_500k.xlsx" "generated_posdlym_65k.xlsx" --out results.json
-node build_report.js results.json report.docx "POSDLYM — 500K scale test"
+i want the ui do to everything ... instead of parsing directly send it to the pos_validator.py as this type of script "python pos_validator.py "golden_posdlym_500k.xlsx" "generated_posdlym_65k.xlsx" --out results.json
+node build_report.js results.json report.docx "POSDLYM — 500K scale test""
+so it can do validation for larger files like 5l 10l etc...
+
+all add a section for create a run report where you upload logs and capture run by run this summary 
+
+log example:
+ReaderLink.Console.ConsoleTelemetry: Information: [A2ClearCaptures] PhaseEntered run=237 file=237 chain=10/MJ Elapsed=+10.34s
+ReaderLink.Console.ConsoleTelemetry: Information: [A2ClearCaptures] PhaseCompleted run=237 file=237 chain=10/MJ Elapsed=+10.34s Parsed=0 PostedDetail=0 AccumulatedDaily=0 UnmatchedItems=0 ReversedMatches=0 HeldRows=0 ToleratedNumericWarnings=0
+ReaderLink.Console.ConsoleTelemetry: Information: [A3ParseClassify] PhaseEntered run=237 file=237 chain=10/MJ Elapsed=+10.34s
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (217ms) [Parameters=[@agencyChain_Agency='?' (Precision = 2) (DbType = Decimal), @agencyChain_Chain='?' (Size = 2) (DbType = AnsiStringFixedLength)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [p].[PKAGY], [p].[PKCHN], [p].[PKACFG], [p].[PKBKOD], [p].[PKBKOT], [p].[PKDALY], [p].[PKEDTD], [p].[PKEDTT], [p].[PKFRM1], [p].[PKFRM2], [p].[PKFRM3], [p].[PKFRM4], [p].[PKFRM5], [p].[PKFRM6], [p].[PKFRM7], [p].[PKFRM8], [p].[PKFRM9], [p].[PKFRMA], [p].[PKFRMB], [p].[PKFRMC], [p].[PKFRMD], [p].[PKFRME], [p].[PKFRMF], [p].[PKFRMG], [p].[PKFRMH], [p].[PKFRMI], [p].[PKFRMJ], [p].[PKFRMK], [p].[PKFRML], [p].[PKFRMM], [p].[PKFRMN], [p].[PKFRMO], [p].[PKLDTE], [p].[PKLHMS], [p].[PKLMDY], [p].[PKLNBR], [p].[PKLPO#], [p].[PKLPRG], [p].[PKLSAT], [p].[PKLTIM], [p].[PKLUSR], [p].[PKNREC], [p].[PKPATH], [p].[PKPAV1], [p].[PKPAV2], [p].[PKPAV3], [p].[PKPAV4], [p].[PKPAV5], [p].[PKPAV6], [p].[PKPAV7], [p].[PKPAV8], [p].[PKPAV9], [p].[PKPIWK], [p].[PKPIWM], [p].[PKPOAS], [p].[PKPOGV], [p].[PKPORM], [p].[PKPOSD], [p].[PKPQS1], [p].[PKPQS2], [p].[PKPQS3], [p].[PKPQS4], [p].[PKPQS5], [p].[PKPQS6], [p].[PKPQS7], [p].[PKPQS8], [p].[PKPQS9], [p].[PKPRO1], [p].[PKPRO2], [p].[PKPRO3], [p].[PKPRO4], [p].[PKPRO5], [p].[PKPRO6], [p].[PKPRO7], [p].[PKPRO8], [p].[PKPRO9], [p].[PKPWSD], [p].[PKRABS], [p].[PKREOD], [p].[PKREOT], [p].[PKRHBS], [p].[PKRPBS], [p].[PKRPOG], [p].[PKRTND], [p].[PKRTNT], [p].[PKSHPD], [p].[PKSHPT], [p].[PKSKUD], [p].[PKSKUT], [p].[PKUDTE], [p].[PKUPRG], [p].[PKUTIM], [p].[PKUUSR], [p].[PKWOS], [p].[RowVer]
+FROM [ctl].[POSCTLM] AS [p]
+WHERE [p].[PKAGY] = @agencyChain_Agency AND [p].[PKCHN] = @agencyChain_Chain
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (221ms) [Parameters=[@p8='?' (Precision = 2) (DbType = Decimal), @p9='?' (Size = 2) (DbType = AnsiStringFixedLength), @p0='?' (Precision = 8) (DbType = Decimal), @p1='?' (Precision = 6) (DbType = Decimal), @p2='?' (Precision = 8) (DbType = Decimal), @p3='?' (Precision = 4) (DbType = Decimal), @p4='?' (Size = 10) (DbType = AnsiString), @p5='?' (Precision = 8) (DbType = Decimal), @p6='?' (Precision = 6) (DbType = Decimal), @p7='?' (Size = 10) (DbType = AnsiString), @p10='?' (Size = 8) (DbType = Binary)], CommandType='Text', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [ctl].[POSCTLM] SET [PKLDTE] = @p0, [PKLHMS] = @p1, [PKLMDY] = @p2, [PKLNBR] = @p3, [PKLPRG] = @p4, [PKLSAT] = @p5, [PKLTIM] = @p6, [PKLUSR] = @p7
+OUTPUT INSERTED.[RowVer]
+WHERE [PKAGY] = @p8 AND [PKCHN] = @p9 AND [RowVer] = @p10;
+ReaderLink.Console.ConsoleTelemetry: Information: [A3ParseClassify] EngineOutcome run=237 file=237 chain=10/MJ Engine=SegmentParser Elapsed=+24.68s Segments=85841 Facts=552473 Parsed=85841 ToleratedNumericWarnings=0
+ReaderLink.Console.ConsoleTelemetry: Information: [A3ParseClassify] PhaseCompleted run=237 file=237 chain=10/MJ Elapsed=+24.68s Parsed=85841 PostedDetail=0 AccumulatedDaily=0 UnmatchedItems=0 ReversedMatches=0 HeldRows=0 ToleratedNumericWarnings=0
+ReaderLink.Console.ConsoleTelemetry: Information: [A4IdentityWaterfall] PhaseEntered run=237 file=237 chain=10/MJ Elapsed=+24.68s
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=20 item=(blank) upc=9780060513153 qtyType=QA qty=6 cause=IM ITEM MASTER MISSING -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=21 item=(blank) upc=9780060513153 qtyType=QA qty=3 cause=IM ITEM MASTER MISSING -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=30 item=(blank) upc=9780060513153 qtyType=QA qty=3 cause=IM ITEM MASTER MISSING -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=42 item=(blank) upc=9780060513153 qtyType=QA qty=3 cause=IM ITEM MASTER MISSING -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=48 item=(blank) upc=9780060513153 qtyType=QA qty=3 cause=IM ITEM MASTER MISSING -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=50 item=(blank) upc=9780060513153 qtyType=QA qty=6 cause=IM ITEM MASTER MISSING -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=52 item=(blank) upc=9780060513153 qtyType=QA qty=3 cause=IM ITEM MASTER MISSING -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=58 item=(blank) upc=9780060513153 qtyType=QA qty=3 cause=IM ITEM MASTER MISSING -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=61 item=(blank) upc=9780060513153 qtyType=QA qty=3 cause=IM ITEM MASTER MISSING -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=64 item=(blank) upc=9780060513153 qtyType=QA qty=3 cause=IM ITEM MASTER MISSING -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=67 item=(blank) upc=9780060513153 qtyType=QA qty=3 cause=IM ITEM MASTER MISSING -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=71 item=(blank) upc=9780060513153 qtyType=QA qty=3 cause=IM ITEM MASTER MISSING -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=104 item=(blank) upc=9780060513153 qtyType=QA qty=3 cause=IM ITEM MASTER MISSING -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=105 item=(blank) upc=9780060513153 qtyType=QA qty=3 cause=IM ITEM MASTER MISSING -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=109 item=(blank) upc=9780060513153 qtyType=QA qty=3 cause=IM ITEM MASTER MISSING -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=113 item=(blank) upc=9780060513153 qtyType=QA qty=3 cause=IM ITEM MASTER MISSING -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=117 item=(blank) upc=9780060513153 qtyType=QA qty=3 cause=IM ITEM MASTER MISSING -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=120 item=(blank) upc=9780060513153 qtyType=QA qty=3 cause=IM ITEM MASTER MISSING -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=121 item=(blank) upc=9780060513153 qtyType=QA qty=3 cause=IM ITEM MASTER MISSING -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=122 item=(blank) upc=9780060513153 qtyType=QA qty=3 cause=IM ITEM MASTER MISSING -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=126 item=(blank) upc=9780060513153 qtyType=QA qty=3 cause=IM ITEM MASTER MISSING -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=127 item=(blank) upc=9780060513153 qtyType=QA qty=3 cause=IM ITEM MASTER MISSING -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=128 item=(blank) upc=9780060513153 qtyType=QA qty=3 cause=IM ITEM MASTER MISSING -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=131 item=(blank) upc=9780060513153 qtyType=QA qty=3 cause=IM ITEM MASTER MISSING -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=133 item=(blank) upc=9780060513153 qtyType=QA qty=3 cause=IM ITEM MASTER MISSING -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=168 item=(blank) upc=9780060758080 qtyType=QA qty=-1 cause=01 UPC NOT FOUND -> pos.POSERRM
+'ReaderLink.Console.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\10.0.11\System.Threading.AccessControl.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Information: [CAPTURE] flushed 5000 pos.POSERRM reject row(s) (Seq through 5000).
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] cause=IM: 4999 reject(s) so far this run, 25 shown above, 4974 not logged individually. Query pos.POSERRM for the full list.
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=281 item=(blank) upc=9780345480262 qtyType=QA qty=-1 cause=01 UPC NOT FOUND -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=168 item=(blank) upc=9780439741125 qtyType=QA qty=-2 cause=01 UPC NOT FOUND -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=168 item=(blank) upc=9780448439884 qtyType=QA qty=-1 cause=01 UPC NOT FOUND -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=162 item=(blank) upc=9780525472186 qtyType=QA qty=-1 cause=ND SCAN MATCH REVERSED -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Information: [CAPTURE] flushed 5000 pos.POSERRM reject row(s) (Seq through 10000).
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] cause=IM: 9995 reject(s) so far this run, 25 shown above, 9970 not logged individually. Query pos.POSERRM for the full list.
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=20 item=(blank) upc=9781078536301 qtyType=QA qty=4 cause=01 UPC NOT FOUND -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=36 item=(blank) upc=9781078536301 qtyType=QA qty=8 cause=01 UPC NOT FOUND -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=42 item=(blank) upc=9781078536301 qtyType=QA qty=4 cause=01 UPC NOT FOUND -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=43 item=(blank) upc=9781078536301 qtyType=QA qty=-2 cause=01 UPC NOT FOUND -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=48 item=(blank) upc=9781078536301 qtyType=QA qty=2 cause=01 UPC NOT FOUND -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=50 item=(blank) upc=9781078536301 qtyType=QA qty=10 cause=01 UPC NOT FOUND -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=53 item=(blank) upc=9781078536301 qtyType=QA qty=1 cause=01 UPC NOT FOUND -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=57 item=(blank) upc=9781078536301 qtyType=QA qty=5 cause=01 UPC NOT FOUND -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=58 item=(blank) upc=9781078536301 qtyType=QA qty=7 cause=01 UPC NOT FOUND -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=61 item=(blank) upc=9781078536301 qtyType=QA qty=4 cause=01 UPC NOT FOUND -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=64 item=(blank) upc=9781078536301 qtyType=QA qty=10 cause=01 UPC NOT FOUND -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=69 item=(blank) upc=9781078536301 qtyType=QA qty=4 cause=01 UPC NOT FOUND -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=71 item=(blank) upc=9781078536301 qtyType=QA qty=8 cause=01 UPC NOT FOUND -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=104 item=(blank) upc=9781078536301 qtyType=QA qty=8 cause=01 UPC NOT FOUND -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=105 item=(blank) upc=9781078536301 qtyType=QA qty=5 cause=01 UPC NOT FOUND -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=109 item=(blank) upc=9781078536301 qtyType=QA qty=5 cause=01 UPC NOT FOUND -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=115 item=(blank) upc=9781078536301 qtyType=QA qty=2 cause=01 UPC NOT FOUND -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=117 item=(blank) upc=9781078536301 qtyType=QA qty=8 cause=01 UPC NOT FOUND -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=121 item=(blank) upc=9781078536301 qtyType=QA qty=7 cause=01 UPC NOT FOUND -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=127 item=(blank) upc=9781078536301 qtyType=QA qty=3 cause=01 UPC NOT FOUND -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=128 item=(blank) upc=9781078536301 qtyType=QA qty=3 cause=01 UPC NOT FOUND -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Information: [CAPTURE] flushed 5000 pos.POSERRM reject row(s) (Seq through 15000).
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] cause=IM: 13971 reject(s) so far this run, 25 shown above, 13946 not logged individually. Query pos.POSERRM for the full list.
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] cause=01: 1028 reject(s) so far this run, 25 shown above, 1003 not logged individually. Query pos.POSERRM for the full list.
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Information: [CAPTURE] flushed 5000 pos.POSERRM reject row(s) (Seq through 20000).
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] cause=IM: 18938 reject(s) so far this run, 25 shown above, 18913 not logged individually. Query pos.POSERRM for the full list.
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] cause=01: 1061 reject(s) so far this run, 25 shown above, 1036 not logged individually. Query pos.POSERRM for the full list.
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Information: [CAPTURE] flushed 5000 pos.POSERRM reject row(s) (Seq through 25000).
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] cause=IM: 23938 reject(s) so far this run, 25 shown above, 23913 not logged individually. Query pos.POSERRM for the full list.
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] cause=01: 1061 reject(s) so far this run, 25 shown above, 1036 not logged individually. Query pos.POSERRM for the full list.
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Information: [CAPTURE] flushed 5000 pos.POSERRM reject row(s) (Seq through 30000).
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] cause=IM: 28937 reject(s) so far this run, 25 shown above, 28912 not logged individually. Query pos.POSERRM for the full list.
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] cause=01: 1062 reject(s) so far this run, 25 shown above, 1037 not logged individually. Query pos.POSERRM for the full list.
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Information: [CAPTURE] flushed 5000 pos.POSERRM reject row(s) (Seq through 35000).
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] cause=IM: 33937 reject(s) so far this run, 25 shown above, 33912 not logged individually. Query pos.POSERRM for the full list.
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] cause=01: 1062 reject(s) so far this run, 25 shown above, 1037 not logged individually. Query pos.POSERRM for the full list.
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=19 item=(blank) upc=9786465250662 qtyType=QA qty=-39 cause=ND SCAN MATCH REVERSED -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=20 item=(blank) upc=9786465250662 qtyType=QA qty=-22 cause=ND SCAN MATCH REVERSED -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=21 item=(blank) upc=9786465250662 qtyType=QA qty=-32 cause=ND SCAN MATCH REVERSED -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=25 item=(blank) upc=9786465250662 qtyType=QA qty=-27 cause=ND SCAN MATCH REVERSED -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=27 item=(blank) upc=9786465250662 qtyType=QA qty=-13 cause=ND SCAN MATCH REVERSED -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=29 item=(blank) upc=9786465250662 qtyType=QA qty=-42 cause=ND SCAN MATCH REVERSED -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=30 item=(blank) upc=9786465250662 qtyType=QA qty=-40 cause=ND SCAN MATCH REVERSED -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=32 item=(blank) upc=9786465250662 qtyType=QA qty=-6 cause=ND SCAN MATCH REVERSED -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=35 item=(blank) upc=9786465250662 qtyType=QA qty=-22 cause=ND SCAN MATCH REVERSED -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=41 item=(blank) upc=9786465250662 qtyType=QA qty=-24 cause=ND SCAN MATCH REVERSED -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=42 item=(blank) upc=9786465250662 qtyType=QA qty=-53 cause=ND SCAN MATCH REVERSED -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=45 item=(blank) upc=9786465250662 qtyType=QA qty=-39 cause=ND SCAN MATCH REVERSED -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=46 item=(blank) upc=9786465250662 qtyType=QA qty=-11 cause=ND SCAN MATCH REVERSED -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=48 item=(blank) upc=9786465250662 qtyType=QA qty=-20 cause=ND SCAN MATCH REVERSED -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=50 item=(blank) upc=9786465250662 qtyType=QA qty=-16 cause=ND SCAN MATCH REVERSED -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=51 item=(blank) upc=9786465250662 qtyType=QA qty=-23 cause=ND SCAN MATCH REVERSED -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=53 item=(blank) upc=9786465250662 qtyType=QA qty=-12 cause=ND SCAN MATCH REVERSED -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=56 item=(blank) upc=9786465250662 qtyType=QA qty=-26 cause=ND SCAN MATCH REVERSED -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=58 item=(blank) upc=9786465250662 qtyType=QA qty=-35 cause=ND SCAN MATCH REVERSED -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=61 item=(blank) upc=9786465250662 qtyType=QA qty=-37 cause=ND SCAN MATCH REVERSED -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=63 item=(blank) upc=9786465250662 qtyType=QA qty=-17 cause=ND SCAN MATCH REVERSED -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=66 item=(blank) upc=9786465250662 qtyType=QA qty=5 cause=ND SCAN MATCH REVERSED -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=67 item=(blank) upc=9786465250662 qtyType=QA qty=-40 cause=ND SCAN MATCH REVERSED -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] reject run=237 chain=10/MJ store=68 item=(blank) upc=9786465250662 qtyType=QA qty=-23 cause=ND SCAN MATCH REVERSED -> pos.POSERRM
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Information: [CAPTURE] flushed 5000 pos.POSERRM reject row(s) (Seq through 40000).
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] cause=IM: 38784 reject(s) so far this run, 25 shown above, 38759 not logged individually. Query pos.POSERRM for the full list.
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] cause=01: 1071 reject(s) so far this run, 25 shown above, 1046 not logged individually. Query pos.POSERRM for the full list.
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] cause=ND: 145 reject(s) so far this run, 25 shown above, 120 not logged individually. Query pos.POSERRM for the full list.
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Information: [CAPTURE] flushed 5000 pos.POSERRM reject row(s) (Seq through 45000).
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] cause=IM: 43784 reject(s) so far this run, 25 shown above, 43759 not logged individually. Query pos.POSERRM for the full list.
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] cause=01: 1071 reject(s) so far this run, 25 shown above, 1046 not logged individually. Query pos.POSERRM for the full list.
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] cause=ND: 145 reject(s) so far this run, 25 shown above, 120 not logged individually. Query pos.POSERRM for the full list.
+ReaderLink.Console.ConsoleTelemetry: Information: [A4IdentityWaterfall] IdentityWaterfall run=237 file=237 chain=10/MJ Facts=552473 Candidates=551257 stage:CurrentMaster=551172 stage:History=85 miss:WaterfallExhausted=1071 reversed:NeverDistributedToChain=145
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Information: [CAPTURE] flushed 4036 pos.POSERRM reject row(s) (Seq through 49036).
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] cause=IM: 47820 reject(s) so far this run, 25 shown above, 47795 not logged individually. Query pos.POSERRM for the full list.
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] cause=01: 1071 reject(s) so far this run, 25 shown above, 1046 not logged individually. Query pos.POSERRM for the full list.
+ReaderLink.Infrastructure.InboundLoad.SqlUnmatchedItemCaptureStore: Warning: [CAPTURE] cause=ND: 145 reject(s) so far this run, 25 shown above, 120 not logged individually. Query pos.POSERRM for the full list.
+ReaderLink.Console.ConsoleTelemetry: Information: [A4IdentityWaterfall] PhaseCompleted run=237 file=237 chain=10/MJ Elapsed=+33.57s Parsed=85841 PostedDetail=0 AccumulatedDaily=0 UnmatchedItems=1071 ReversedMatches=145 HeldRows=0 ToleratedNumericWarnings=0
+ReaderLink.Console.ConsoleTelemetry: Information: [A5PostDetail] PhaseEntered run=237 file=237 chain=10/MJ Elapsed=+33.57s
+The thread 27416 has exited with code 0 (0x0).
+The thread '.NET TP Worker' (23456) has exited with code 0 (0x0).
+ReaderLink.Console.ConsoleTelemetry: Information: [A5PostDetail] EngineOutcome run=237 file=237 chain=10/MJ Engine=PosDetailWriter Elapsed=+52.68s Candidates=551257 RowsFlushed=498811 PostedDetail=503437
+ReaderLink.Console.ConsoleTelemetry: Information: [A5PostDetail] PhaseCompleted run=237 file=237 chain=10/MJ Elapsed=+52.68s Parsed=85841 PostedDetail=503437 AccumulatedDaily=0 UnmatchedItems=1071 ReversedMatches=145 HeldRows=0 ToleratedNumericWarnings=0
+ReaderLink.Console.ConsoleTelemetry: Information: [A6StoreFlip] PhaseEntered run=237 file=237 chain=10/MJ Elapsed=+52.68s
+ReaderLink.Console.ConsoleTelemetry: Information: [A6StoreFlip] EngineOutcome run=237 file=237 chain=10/MJ Engine=StoreFlipService Elapsed=+53.12s Rows=498811 MatchedCrossReference=0 Flipped=0 Unmatched=498811 Rewrites=0
+ReaderLink.Console.ConsoleTelemetry: Information: [A6StoreFlip] PhaseCompleted run=237 file=237 chain=10/MJ Elapsed=+53.12s Parsed=85841 PostedDetail=503437 AccumulatedDaily=0 UnmatchedItems=1071 ReversedMatches=145 HeldRows=0 ToleratedNumericWarnings=0
+ReaderLink.Console.ConsoleTelemetry: Information: [C1BookScanExtract] PhaseEntered run=237 file=237 chain=10/MJ Elapsed=+53.12s
+ReaderLink.Console.ConsoleTelemetry: Information: [C1BookScanExtract] EngineOutcome run=237 file=237 chain=10/MJ Engine=FlatFileRenderer Elapsed=+71.58s Records=5631 Bytes=118251
+'ReaderLink.Console.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\10.0.11\System.Xml.XDocument.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'ReaderLink.Console.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\10.0.11\System.Private.Xml.Linq.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+ReaderLink.Infrastructure.Sql.SqlExecutor: Information: [SQL] BookScan/NextNielsenControlNumber.sql 268ms on=run-tx result=21801
+ReaderLink.Console.ConsoleTelemetry: Information: [C1BookScanExtract] EngineOutcome run=237 file=237 chain=10/MJ Engine=BookScanExtractor Elapsed=+71.90s Records=5631 Headers=272 Details=5087 Summaries=272 ConversionWarnings=0
+ReaderLink.Console.ConsoleTelemetry: Information: [C1BookScanExtract] PhaseCompleted run=237 file=237 chain=10/MJ Elapsed=+71.90s Parsed=85841 PostedDetail=503437 AccumulatedDaily=0 UnmatchedItems=1071 ReversedMatches=145 HeldRows=0 ToleratedNumericWarnings=0
+ReaderLink.Console.ConsoleTelemetry: Information: [C2DailyAccumulate] PhaseEntered run=237 file=237 chain=10/MJ Elapsed=+71.90s
+ReaderLink.Infrastructure.Sql.SqlExecutor: Information: [SQL] DailyAccumulate/PosDlym_Validate.sql 821ms on=run-tx result=ValidationCounts { TotalRows = 498811, ItemStoreExistenceFailures = 70, NonZeroQuantityFailures = 3 }
+ReaderLink.Console.ConsoleTelemetry: Information: [C2DailyAccumulate] ItemStoreExistenceFailures run=237 file=237 chain=10/MJ ItemStoreExistenceFailures=70 TotalRows=498811 Decision=POS0852R-3: legacy performs no acceptance edits — reported, never a gate
+The thread '.NET TP Worker' (26256) has exited with code 0 (0x0).
+The thread '.NET TP Worker' (28444) has exited with code 0 (0x0).
+The thread '.NET TP Worker' (15276) has exited with code 0 (0x0).
+The thread '.NET TP Worker' (25292) has exited with code 0 (0x0).
+The thread '.NET TP Worker' (14096) has exited with code 0 (0x0).
+The thread '.NET TP Worker' (23588) has exited with code 0 (0x0).
+ReaderLink.Infrastructure.Sql.SqlExecutor: Information: [SQL] DailyAccumulate/PosDlym_Merge.sql 43414ms on=run-tx result=MergeCounts { QsInserted = 5126, QaInserted = 498065, QrInserted = 0 }
+ReaderLink.Infrastructure.Sql.SqlExecutor: Information: [SQL] DailyAccumulate/holdm_park.sql 599ms on=run-tx result=ParkCounts { HeldRows = 3 }
+ReaderLink.Console.ConsoleTelemetry: Information: [C2DailyAccumulate] PhaseCompleted run=237 file=237 chain=10/MJ Elapsed=+116.97s Parsed=85841 PostedDetail=503437 AccumulatedDaily=503191 UnmatchedItems=1071 ReversedMatches=145 HeldRows=3 ToleratedNumericWarnings=0
+ReaderLink.Console.ConsoleTelemetry: Information: [C3WeekCheck] PhaseEntered run=237 file=237 chain=10/MJ Elapsed=+116.97s
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (210ms) [Parameters=[@agencyChain_Agency='?' (Precision = 2) (DbType = Decimal), @agencyChain_Chain='?' (Size = 2) (DbType = AnsiStringFixedLength)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [p].[PKAGY], [p].[PKCHN], [p].[PKACFG], [p].[PKBKOD], [p].[PKBKOT], [p].[PKDALY], [p].[PKEDTD], [p].[PKEDTT], [p].[PKFRM1], [p].[PKFRM2], [p].[PKFRM3], [p].[PKFRM4], [p].[PKFRM5], [p].[PKFRM6], [p].[PKFRM7], [p].[PKFRM8], [p].[PKFRM9], [p].[PKFRMA], [p].[PKFRMB], [p].[PKFRMC], [p].[PKFRMD], [p].[PKFRME], [p].[PKFRMF], [p].[PKFRMG], [p].[PKFRMH], [p].[PKFRMI], [p].[PKFRMJ], [p].[PKFRMK], [p].[PKFRML], [p].[PKFRMM], [p].[PKFRMN], [p].[PKFRMO], [p].[PKLDTE], [p].[PKLHMS], [p].[PKLMDY], [p].[PKLNBR], [p].[PKLPO#], [p].[PKLPRG], [p].[PKLSAT], [p].[PKLTIM], [p].[PKLUSR], [p].[PKNREC], [p].[PKPATH], [p].[PKPAV1], [p].[PKPAV2], [p].[PKPAV3], [p].[PKPAV4], [p].[PKPAV5], [p].[PKPAV6], [p].[PKPAV7], [p].[PKPAV8], [p].[PKPAV9], [p].[PKPIWK], [p].[PKPIWM], [p].[PKPOAS], [p].[PKPOGV], [p].[PKPORM], [p].[PKPOSD], [p].[PKPQS1], [p].[PKPQS2], [p].[PKPQS3], [p].[PKPQS4], [p].[PKPQS5], [p].[PKPQS6], [p].[PKPQS7], [p].[PKPQS8], [p].[PKPQS9], [p].[PKPRO1], [p].[PKPRO2], [p].[PKPRO3], [p].[PKPRO4], [p].[PKPRO5], [p].[PKPRO6], [p].[PKPRO7], [p].[PKPRO8], [p].[PKPRO9], [p].[PKPWSD], [p].[PKRABS], [p].[PKREOD], [p].[PKREOT], [p].[PKRHBS], [p].[PKRPBS], [p].[PKRPOG], [p].[PKRTND], [p].[PKRTNT], [p].[PKSHPD], [p].[PKSHPT], [p].[PKSKUD], [p].[PKSKUT], [p].[PKUDTE], [p].[PKUPRG], [p].[PKUTIM], [p].[PKUUSR], [p].[PKWOS], [p].[RowVer]
+FROM [ctl].[POSCTLM] AS [p]
+WHERE [p].[PKAGY] = @agencyChain_Agency AND [p].[PKCHN] = @agencyChain_Chain
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (214ms) [Parameters=[@p1='?' (Precision = 2) (DbType = Decimal), @p2='?' (Size = 2) (DbType = AnsiStringFixedLength), @p0='?' (Precision = 3) (Scale = 1) (DbType = Decimal), @p3='?' (Size = 8) (DbType = Binary)], CommandType='Text', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [ctl].[POSCTLM] SET [PKPOGV] = @p0
+OUTPUT INSERTED.[RowVer]
+WHERE [PKAGY] = @p1 AND [PKCHN] = @p2 AND [RowVer] = @p3;
+ReaderLink.Console.ConsoleTelemetry: Information: [C3WeekCheck] PhaseCompleted run=237 file=237 chain=10/MJ Elapsed=+117.63s Parsed=85841 PostedDetail=503437 AccumulatedDaily=503191 UnmatchedItems=1071 ReversedMatches=145 HeldRows=3 ToleratedNumericWarnings=0
+ReaderLink.Console.ConsoleTelemetry: Information: [EEpilogue] PhaseEntered run=237 file=237 chain=10/MJ Elapsed=+117.63s
+Microsoft.EntityFrameworkCore.Database.Command: Information: Executed DbCommand (212ms) [Parameters=[@p='?' (Size = 1) (DbType = AnsiStringFixedLength), @p0='?' (Scale = 3) (DbType = DateTime2), @runId_Value='?' (DbType = Int64)], CommandType='Text', CommandTimeout='30']
+UPDATE [r]
+SET [r].[Status] = @p,
+    [r].[CompletedAtUtc] = @p0
+FROM [pos].[RUN_LEDGER] AS [r]
+WHERE [r].[RunId] = @runId_Value
+ReaderLink.Console.ConsoleTelemetry: Information: [EEpilogue] PhaseCompleted run=237 file=237 chain=10/MJ Elapsed=+118.08s Parsed=85841 PostedDetail=503437 AccumulatedDaily=503191 UnmatchedItems=1071 ReversedMatches=145 HeldRows=3 ToleratedNumericWarnings=0
+ReaderLink.Console.ConsoleTelemetry: Information: [EEpilogue] RunCompleted run=237 file=237 chain=10/MJ Parsed=85841 ToleratedNumericWarnings=0 UnmatchedItems=1071 ReversedMatches=145 HeldRows=3 PostedDetail=503437 AccumulatedDaily=503191
+Microsoft.Hosting.Lifetime: Information: Application is shutting down...
+The thread 'Console logger queue processing thread' (16768) has exited with code 0 (0x0).
+The program '[3108] ReaderLink.Console.exe' has exited with code 0 (0x0).
+
+
+Report (tabulation)
+
+Run 237 Breakdown with Timings
+Phase	Start (s)	End (s)	Duration (s)	Key MetricsA2 Clear Captures	10.34	10.34	0.00	Cleanup completed
+A3 Parse & Classify	10.34	24.68	14.34	85,841 segments, 552,473 facts
+A4 Identity Waterfall	24.68	33.57	8.89	551,257 candidates, 1,071 unmatched, 145 reversed
+A5 Post Detail	33.57	52.68	19.11	503,437 posted detail rows
+A6 Store Flip	52.68	53.12	0.44	498,811 rows processed, 0 flipped
+C1 BookScan Extract	53.12	71.90	18.78	5,631 BookScan records
+C2 Daily Accumulate	71.90	116.97	45.07	503,191 accumulated daily rows
+C3 Week Check	116.97	117.63	0.66	Week check completed
+EEpilogue	117.63	118.08	0.45	Run finalized
+Total Runtime			118.08	1m 58s
+Identity Waterfall Breakdown
+Metric	CountFacts	552,473
+Candidates	551,257
+Current Master Matches	551,172
+History Matches	85
+UPC NOT FOUND	1,071
+ND SCAN MATCH REVERSED	145
+IM ITEM MASTER MISSING	47,820
+Reject Summary
+Reject Type	CountIM ITEM MASTER MISSING	47,820
+UPC NOT FOUND	1,071
+ND SCAN MATCH REVERSED	145
+Total POSERRM Rows	49,036
+Daily Accumulate Details
+Metric	CountPOSDTL Rows Validated	498,811
+ItemStoreExistenceFailures	70
+NonZeroQuantityFailures	3
+QS Inserted	5,126
+QA Inserted	498,065
+QR Inserted	0
+Held Rows	3
+Performance Ranking
+Rank	Phase	Time (s)1	C2 Daily Accumulate	45.07
+2	A5 Post Detail	19.11
+3	C1 BookScan Extract	18.78
+4	A3 Parse & Classify	14.34
+5	A4 Identity Waterfall	8.89
+6	C3 Week Check	0.66
+7	EEpilogue	0.45
+8	A6 Store Flip	0.44
+9	A2 Clear Captures	0.00
+Final Run Summary
+Run ID             : 237
+Chain              : 10/MJ
+Total Runtime      : 118.08 sec
+
+Parsed Records     : 85,841
+Facts Generated    : 552,473
+Posted Detail      : 503,437
+Accumulated Daily  : 503,191
+
+Unmatched Items    : 1,071
+Reversed Matches   : 145
+Held Rows          : 3
+
+
+Biggest bottleneck: C2 Daily Accumulate (45.07s) consuming ~38% of total runtime.
